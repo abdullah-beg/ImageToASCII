@@ -18,3 +18,9 @@ Convert an Image to ASCII art!
 ![logo](https://user-images.githubusercontent.com/98782131/177410112-fb8c5268-3c49-40ef-afcc-2aeab3de7a44.png)
 ## Output Text File
 ![image](https://user-images.githubusercontent.com/98782131/177410093-c32a9e66-8546-4961-bfae-a63cb49d3c8f.png)
+
+
+## References
+ - The "Standard" character ramp. http://paulbourke.net/dataformats/asciiart/
+ - The weighted greyscale equation. https://www.dynamsoft.com/blog/insights/image-processing/image-processing-101-color-space-conversion/
+

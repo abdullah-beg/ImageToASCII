@@ -1,23 +1,25 @@
 
 import java.awt.Color;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.util.Scanner;
 
 public class ImageConverter {
 
     private InputReader inputReader;
 
+    // Image data
     private Color[][] imageColors;
     private int imageWidth;
     private int imageHeight;
 
+    // Final image
     private String[][] asciiImage;
 
+    // What symbols to be used.
     private String symbols;
     private int charactersPerPixel;
 
+    // Weights of the RGB values.
     private static final double redWeight = 0.299;
     private static final double greenWeight = 0.587;
     private static final double blueWeight = 0.114;
@@ -29,6 +31,10 @@ public class ImageConverter {
     private String outputFileName;
     private String outputFilePath;
 
+    /**
+     * Constructor for the ImageConverter
+     * @param imageReader
+     */
     public ImageConverter(ImageReader imageReader) {
 
         inputReader = new InputReader();
@@ -45,6 +51,9 @@ public class ImageConverter {
 
     }
 
+    /**
+     * Convert the image to ASCII.
+     */
     private void convertImageToASCII() {
 
         System.out.println("~~~ Select Symbols ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -63,6 +72,11 @@ public class ImageConverter {
 
     }
 
+    /**
+     * Select what Symbols to be used.
+     * @param symbols The symbols to be used.
+     * @return Boolean dictating whether the symbols are valid.
+     */
     private boolean setSymbols(String symbols) {
 
         switch (symbols.toLowerCase()) {
@@ -87,6 +101,11 @@ public class ImageConverter {
 
     }
 
+    /**
+     * Select how many times each symbol is to be written per pixel.
+     * @param charactersPerPixel The number of times the symbol is written per pixel.
+     * @return Boolean dictating whether a valid input has been given.
+     */
     private boolean setCharactersPerPixel(int charactersPerPixel) {
 
         if (charactersPerPixel < 1) {
@@ -98,13 +117,23 @@ public class ImageConverter {
         return true;
 
     }
-    
+
+    /**
+     * Calculate the grey scale weight of the pixel.
+     * @param pixel The pixel with its RGB Values
+     * @return A value to represent the darkness of the pixel.
+     */
     private double calculatePixelGrayscale(Color pixel) {
 
         return (redWeight * pixel.getRed()) + (greenWeight * pixel.getGreen()) + (blueWeight * pixel.getBlue());
 
     }
 
+    /**
+     * Get the approximate symbol representing the pixel at the colour level.
+     * @param value The value the pixel's darkness.
+     * @return String which represents the pixel.
+     */
     private String getApproximateSymbol(double value) {
 
         int index = (int)Math.round(((((value / 255)) * (symbols.length() - 1))));
@@ -113,6 +142,9 @@ public class ImageConverter {
 
     }
 
+    /**
+     * Convert the entire image.
+     */
     private void convertImage() {
 
         for (int height = 0; height < imageHeight; height++) {
@@ -133,6 +165,10 @@ public class ImageConverter {
 
     }
 
+    /**
+     * Sets the output file path.
+     * @param path The output file path.
+     */
     public void setOutputFilePath(String path) {
 
         if (path.trim().equals(".")) {
@@ -145,6 +181,10 @@ public class ImageConverter {
 
     }
 
+    /**
+     * Set the output file name.
+     * @param fileName The output file name.
+     */
     public void setOutputFileName(String fileName) {
 
         if (fileName.equals(".")) {
@@ -169,6 +209,10 @@ public class ImageConverter {
 
     }
 
+    /**
+     * Creates the output file.
+     * @return boolean dictating whether the file path is valid.
+     */
     public boolean createOutputFile() {
 
         try {
@@ -186,6 +230,9 @@ public class ImageConverter {
 
     }
 
+    /**
+     * Write the output image into the text file.
+     */
     private void writeFile() {
 
         String output = "";

@@ -1,8 +1,6 @@
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.regex.Pattern;
 
 import javax.imageio.ImageIO;
@@ -22,6 +20,9 @@ public class ImageReader {
 
     private InputReader inputReader;
 
+    /**
+     * Constructor for ImageReader
+     */
     public ImageReader() {
     
         inputReader = new InputReader();
@@ -30,6 +31,9 @@ public class ImageReader {
     
     }
 
+    /**
+     * Get the user to enter a valid file path to a png image.
+     */
     public void setupFile() {
 
         System.out.println("~~~ Load Image File ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -37,6 +41,9 @@ public class ImageReader {
 
     }
 
+    /**
+     * Set the image file name.
+     */
     private void setImageFileName() {
 
 
@@ -48,6 +55,10 @@ public class ImageReader {
 
     }
 
+    /**
+     * Set the file path.
+     * @param filePath The file path to be set to the field.
+     */
     private void setFilePath(String filePath) {
 
         this.filePath = filePath;
@@ -55,6 +66,11 @@ public class ImageReader {
     }
 
 
+    /**
+     * Loads the image file.
+     * @param fileName The file path of the image.
+     * @return boolean dictating if the image was successfully loaded.
+     */
     public boolean loadImageFile(String fileName) {
 
         try { 
@@ -76,6 +92,9 @@ public class ImageReader {
 
     }
 
+    /**
+     * Creates a new Color Array from each of the pixels in the image.
+     */
     private void createImageColorArray() {
 
         imageColorArray = new Color[imageHeight][imageWidth];
@@ -91,42 +110,70 @@ public class ImageReader {
 
     }
 
+    /**
+     * Set the image's width.
+     * @param imageWidth The value to set the imageWidth field.
+     */
     public void setImageWidth(int imageWidth) {
 
         this.imageWidth = imageWidth;
 
     }
 
+    /**
+     * Set the image's height.
+     * @param imageHeight The value to set the imageHeight field.
+     */
     public void setImageHeight(int imageHeight) {
 
         this.imageHeight = imageHeight;
 
     }
 
+    /**
+     * Getter for the imageColorArray field.
+     * @return Returns the imageColorArray field.
+     */
     public Color[][] getImageColorArray() {
 
         return imageColorArray;
 
     }
 
+    /**
+     * Getter for the imageWidth field.
+     * @return Returns the imageWidth field.
+     */
     public int getImageWidth() {
 
         return imageWidth;
 
     }
 
+    /**
+     * Getter for the imageHeight field.
+     * @return Returns the imageHeight field.
+     */
     public int getImageHeight() {
 
         return imageHeight;
 
     }
 
+    /**
+     * Getter for the filePath field.
+     * @return Returns the filePath field.
+     */
     public String getFilePath() {
 
         return filePath;
 
     }
 
+    /**
+     * Getter for the imageFileName field.
+     * @return Returns the imageFileName field.
+     */
     public String getImageFileName() {
 
         return imageFileName;
